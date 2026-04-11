@@ -1,6 +1,6 @@
 //Conexión a base de datos
 //importamos sequelize
-const {sequelize}=require('sequelize');
+const {Sequelize}=require('sequelize');
 
 //Crear conexion a mysql
 const sequelize = new Sequelize('taskmanager','root','NuevaClave123$',

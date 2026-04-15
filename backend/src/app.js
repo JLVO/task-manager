@@ -7,14 +7,14 @@ const helmet = require('helmet');//seguridad protefer http
 //inicializamos la app
 const app = express();
 
-//rutas
-const routes = require('./routes');
-app.use('/api',routes);
-
 //middleware para leer json(APIS)
 app.use(express.json());
 app.use(cors());//Seguridad básica
 app.use(helmet());//seguridad
+
+//rutas
+const routes = require('./routes');
+app.use('/api',routes);
 
 //Ruta de prueba
 app.get('/', (req,res)=>{

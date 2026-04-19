@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const {Task}=require('../models/Task');
+const {Task}=require('../models');
 //obtener las tareas 
 exports.getTasks=async(req,res)=>{
     const tasks = await Task.findAll({

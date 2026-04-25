@@ -30,7 +30,7 @@ function Dashboard() {
     {
        console.log("Error al obtner las tareas",error);
     }
-  }
+  };
  
   //crear tareas
   const createTask=async()=>{
@@ -45,7 +45,7 @@ function Dashboard() {
 
   const updateTask=async(id)=>{
     const newTitle = prompt("Nuevo Titulo:");
-    const newDesc = prompt("Nueva descripcion:");
+    const newDesc = prompt("Nueva descripción:");
 
     if(!newTitle || !newDesc)return;
 
@@ -54,7 +54,7 @@ function Dashboard() {
       {headers:{Authorization:token}}
     );
     getTasks();
-  }
+  };
   return (
      <div className="min-h-screen bg-gray-100 p-6">
 
@@ -110,9 +110,23 @@ function Dashboard() {
             </div>
 
             <div>
-              <button onClick={updateTask(t.id)} 
+              <button onClick={()=>updateTask(t.id)} 
               className="bg-yellow-400 px-3 py-1 rounded text white">
                 Editar
+              </button>
+            </div>
+
+             <div>
+              <button onClick={()=>updateTask(t.id)} 
+              className="bg-yellow-400 px-3 py-1 rounded text white">
+                Elim. física
+              </button>
+            </div>
+
+             <div>
+              <button onClick={()=>updateTask(t.id)} 
+              className="bg-yellow-400 px-3 py-1 rounded text white">
+                Elim. Lógica
               </button>
             </div>
 

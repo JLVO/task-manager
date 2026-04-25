@@ -14,5 +14,6 @@ router.get('/tasks',verificarToken,task.getTasks);
 router.post('/tasks',verificarToken,task.createTask);
 router.put('/tasks/:id',verificarToken,task.updateTask);
 router.delete('/tasks/:id',verificarToken,task.deleteTask);
+router.put('/tasks/logic/:id',verificarToken,task.deleteTaskLogic);
 
 module.exports = router;

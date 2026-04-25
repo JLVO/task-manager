@@ -24,7 +24,7 @@ function Dashboard() {
     const res=await axios.get("http://localhost:3000/api/tasks",{
         headers:{Authorization: token}
       });
-       setTasks(res.data);
+       setTasks(res.data); 
   }
   catch(error)
     {
@@ -42,6 +42,19 @@ function Dashboard() {
   setDescription("");
   getTasks();
   };
+
+  const updateTask=async(id)=>{
+    const newTitle = prompt("Nuevo Titulo:");
+    const newDesc = prompt("Nueva descripcion:");
+
+    if(!newTitle || !newDesc)return;
+
+    await axios.put(`http://localhost:3000/api/tasks/${id}`,
+      {title:newTitle,description:newDesc},
+      {headers:{Authorization:token}}
+    );
+    getTasks();
+  }
   return (
      <div className="min-h-screen bg-gray-100 p-6">
 
@@ -94,6 +107,13 @@ function Dashboard() {
             <div>
               <h3 className="font-bold">{t.title}</h3>
               <p className="text-gray-500 text-sm">{t.description}</p>
+            </div>
+
+            <div>
+              <button onClick={updateTask(t.id)} 
+              className="bg-yellow-400 px-3 py-1 rounded text white">
+                Editar
+              </button>
             </div>
 
             <span className="text-xs bg-green-100 px-2 py-1 rounded">

@@ -3,7 +3,7 @@ const {Task}=require('../models');
 //obtener las tareas 
 exports.getTasks=async(req,res)=>{
     const tasks = await Task.findAll({
-    where:{UserId:req.user.id}//Solo tareas del usuario
+    where:{UserId:req.user.id,activa:true}//Solo tareas del usuario
     });
     res.json(tasks);
 };
@@ -34,3 +34,13 @@ exports.deleteTask=async(req,res)=>{
     });
     res.json({mensaje:'Tarea eliminada'});
 };
+
+//Eliminar tareas de forma lógica
+exports.deleteTaskLogic=async(req,res)=>{
+    const{id}=req.params;
+    await Task.update({activa:false},{
+        where:{id,UserId:req.user.id}
+    });
+    res.json({mensaje:'Tarea eliminada de forma lógica'
+    });
+}
